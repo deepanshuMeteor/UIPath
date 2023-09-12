@@ -1,0 +1,63 @@
+﻿<!-- form
+{
+  "Metadata": {
+    "Id": "48d11d3a-792e-4752-9b8c-2165a4ebaa1c",
+    "Kind": "Html"
+  }
+}
+-->
+<html>
+<title>My HTML Form</title>
+<script type="text/javascript">
+			var uiPathApi = {
+                getValue: function (elementId) {
+                    // this is a callback, being called from the workflow
+                    // enter your own code to get element values
+                    var el = document.getElementById(elementId);
+                    if (el.value == undefined) {
+                        return el.innerHTML;
+                    } else {
+                        if (el.checked == undefined) {
+                            return el.value;
+                        } else {
+                            return el.checked;
+                        }
+                    }
+                },
+        
+                setValue: function (elementId, value) {
+                    // this is a callback, being called from the workflow
+                    // enter your own code to set element values
+                    var el = document.getElementById(elementId);
+                    if (el.value == undefined) {
+                        el.innerHTML = value;
+                    } else {
+                        if (el.checked == undefined) {
+                            el.value = value;
+                        } else {
+                            el.checked = value;
+                        }
+                    }
+                },
+        
+                // Call this to trigger a "Form Message" event
+                // This function is set by the forms engine after the page loads,
+                // but declaring it here as empty helps with code autocompletion
+                sendMessage: function (id, value) { },
+			};
+		function okClicked() {
+			uiPathApi.sendMessage("ok clicked");
+		}
+		function cancelClicked() {
+			uiPathApi.sendMessage("cancel clicked");
+		}
+	</script>
+<body>
+	<div>Welcome to UiPath! Click OK to continue or Cancel to close this automation.</div>
+	<div class="actions">
+		<button class="confirm" onclick="okClicked()">OK</button>
+		<button class="cancel" onclick="cancelClicked()">Cancel</button>
+	</div>
+	<div class="bottom">Current date/time is <span id="time">N/A</span></div>
+</body>
+</html>
